@@ -1,49 +1,65 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
-import Colors from "../particles/Colors";
-import Badge from "../atoms/Badge";
-import Avatar from "../atoms/Avatar";
+import Badge from "../atoms/Badge"
 
-export const colors = {
-  purple: "purple",
-  grey: "grey"
-};
 
 const StreamDescWrapper = styled.div`
   width: 100%;
-  div {
-    width: 308px;
-    height: 170px;
-    background: 
+  .streamer_name {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 140%;
+    color: black;
   }
+  .stream_name {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 140%;
+    color: black;
+  }
+  .stream_game {  
+    font-family: Roobert TRIAL;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 140%;
+    color: #9F9F9F;
+  }
+
+  .badge_wrapper {
+    padding-top: 8px;
+  }
+
 `;
 
+
 const StreamDesc = props => {
-  const { text, color } = props;
+  const { streamerName, streamName ,game,badges} = props;
+
   return (
-    <StreamDescWrapper color={color}>
-      
-        <CardOverlay color="red" text="LIVE"></CardOverlay>
-      
+    <StreamDescWrapper>
+      <span class="streamer_name">{streamerName}</span>
+      <div class="stream_name">{streamName}</div>
+      <span class="stream_game">{game}</span>
+      <div class="badge_wrapper">
+        {badges ? badges.map(badge => (
+            <Badge text={badge} color="grey"></Badge>
+          )) : null}
+      </div>
+
     </StreamDescWrapper>
   );
 };
 
 StreamDesc.propTypes = {
-  streamer_name: PropTypes.string,
-  stream_title: PropTypes.string,
   streamerName: PropTypes.string,
   streamName: PropTypes.string,
-  badges: PropTypes.array,
-  isThumbnail: PropTypes.bool,
   game: PropTypes.string,
-  color: PropTypes.oneOf(Object.keys(colors)),
-  text: PropTypes.string
+  badges: PropTypes.array,
 };
 
-StreamCard.defaultProps = {
-  color: colors.grey
-};
 
-export default StreamCard;
+export default StreamDesc;

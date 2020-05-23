@@ -10,12 +10,12 @@ export const sizes = {
 };
 
 const AvatarWrapper = styled.div`
+  background : #F2F2F2;
   background-images: url("../../media/examples/${props => props.path ? props.path : null}");
   width: ${props =>  props.sizes ? props.sizes : sizes.medium};
   height: ${props =>  props.sizes ? props.sizes : sizes.medium};
-  margin-right: 8px;
+  margin: 8px 8px 8px 0;
   border-radius: 100px;
-  border: solid 1px black;
 `;
 
 

@@ -9,9 +9,9 @@ export default {
     decorators: [withKnobs]
 };
 
-const badges = ["Simulation","Aventure"]
 
-export const Online = () => <StreamCard live="true" viewers="1,7" badges={badges}/>;
+
+export const Online = () => <StreamCard live='true' viewers="1,7"/>;
 
 export const Offline = () => <StreamCard/>;
 

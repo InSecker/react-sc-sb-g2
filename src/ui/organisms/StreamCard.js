@@ -1,10 +1,9 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
-import Colors from "../particles/Colors";
 import CardOverlay from "../atoms/CardOverlay";
 import Avatar from "../atoms/Avatar";
-import Badge from "../atoms/Badge"
+import StreamDesc from "../molecules/streamDesc"
 
 export const colors = {
   purple: "purple",
@@ -12,8 +11,7 @@ export const colors = {
 };
 
 const StreamCardWrapper = styled.span`
-  width: 100%;
-  div {
+  .overlay {
     width: 292px;
     height: 170px;
     background: #F2F2F2;
@@ -22,10 +20,18 @@ const StreamCardWrapper = styled.span`
     flex-direction: column;
     justify-content: space-between;
   }
+
+  .descWrapper {
+    display: flex;
+    padding: 1vh 0 1vh 0;
+  }
 `;
 
+
+const badges = ["Simulation","Aventure"]
+
 const StreamCard = props => {
-  const { text, color, live, viewers, isThumbnail, badges } = props;
+  const { text, color, live, viewers, isThumbnail,streamName,streamerName,game } = props;
   const displayOverlay = () => {
     if (live) {
       return(
@@ -48,25 +54,25 @@ const StreamCard = props => {
   } else {
     return (
       <StreamCardWrapper color={color}>
-        <div>
+        <div class="overlay">
           {displayOverlay()}
         </div>
-        <Avatar size="small" path="helloWorld"></Avatar>
-        {badges ? badges.map(badge => (
-          <Badge text={badge} color="grey"></Badge>
-        )) : null}
+        <div class="descWrapper">
+          <Avatar size="small" path="helloWorld"></Avatar>
+          <StreamDesc streamerName="AngleDroit" streamName="mardi chill sur Animal Crossing | Geoguessr ce..." game="Animal Crossing: New Horizons" badges={badges}></StreamDesc>
+        </div>
+        
       </StreamCardWrapper>
     )
   };
 };
 
 StreamCard.propTypes = {
-  live: PropTypes.bool,
-  viewers: PropTypes.number,
+  live: PropTypes.string,
+  viewers: PropTypes.string,
   streamerName: PropTypes.string,
   streamName: PropTypes.string,
-  badges: PropTypes.array,
-  isThumbnail: PropTypes.bool,
+  isThumbnail: PropTypes.string,
   game: PropTypes.string,
   color: PropTypes.oneOf(Object.keys(colors)),
   text: PropTypes.string

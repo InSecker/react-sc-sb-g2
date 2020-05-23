@@ -16,6 +16,8 @@ const BadgeWrapper = styled.span`
   color: white;
   font-family: sans-serif;
   font-size: 12px;
+  width: fit-content;
+  margin-top: 1vh;
 `;
 
 const Badge = props => {
